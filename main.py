@@ -24,10 +24,7 @@ def clicker():
 
     for _ in range(delay): 
         if not clickThreadState: break  # 如果点击线程存在且正在运行中则跳出循环
-        countdownLabel['text'] = f"倒计时 {delay - _} 秒"  # 显示倒计时
         time.sleep(1)  # 倒计时1秒
-
-    countdownLabel['text'] = ""  # 倒计时结束，清空倒计时标签
 
     for _ in range(clicks): # 循环执行指定次数的点击操作
         if not clickThreadState: break  # 如果点击线程存在且正在运行中则跳出循环
@@ -60,7 +57,7 @@ def onKeyPressed(event):
 # 创建窗口
 window = Tk()  # 创建一个窗口对象
 window.title("连点器")  # 设置窗口标题为"连点器"
-window.geometry("250x300")  # 设置窗口大小为250x280
+window.geometry("400x350")  # 设置窗口大小为400x350
 window.resizable(False, False)  # 设置窗口大小不可变
 window.attributes("-topmost", True)  # 窗口置顶
 
@@ -83,11 +80,6 @@ clickButton = Button(window, text="开始点击", command=runClicker)  # 创建�
 clickButton.pack(pady=10)  # 将按钮添加到窗口，并设置垂直外边距为10
 statusLabel = Label(window, text="(按 “F4” 开始或停止执行程序)")  # 创建一个标签显示文本"(F6:开始执行, F7:停止执行)"
 statusLabel.pack(side=BOTTOM)  # 将标签添加到窗口底部
-
-countdownLabel = Label(window, text="") # 倒计时标签
-countdownLabel.pack(pady=5)  # 将标签添加到窗口，并设置垂直外边距为5
-countdownEntry = Entry(window)  # 创建一个文本输入框
-countdownEntry.pack(pady=5)  # 将文本输入框添加到窗口，并设置垂直外边距为5
 
 keyboard.on_press(onKeyPressed)  # 监听键盘按键事件，调用onKeyPressed方法进行处理
 
